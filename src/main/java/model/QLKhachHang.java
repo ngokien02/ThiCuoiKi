@@ -75,6 +75,11 @@ public class QLKhachHang {
 
     public double getTieuThuThapNhat() {
         double min = 0;
+        Comparator<KhachHang> cmp = (kh1, kh2) -> {
+            return Double.compare(kh1.getTieuThu(), kh2.getTieuThu());
+        };
+        Collections.sort(dsKhachHang, cmp);
+        min = dsKhachHang.getFirst().getTieuThu();
         return min;
     }
 

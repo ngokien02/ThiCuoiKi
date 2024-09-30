@@ -22,7 +22,7 @@ import model.KhachHang;
 public class FrmQLKhachHang extends JFrame {
 
     private JTable tblKhachHang;
-    private JButton btDocFile, btGhiFile, btMax;
+    private JButton btDocFile, btGhiFile, btMax, btMin;
 
     private DefaultTableModel model;
     private JTextField txtMax, txtMin, txtTB;
@@ -78,6 +78,7 @@ public class FrmQLKhachHang extends JFrame {
 
         p2.add(chkSapXep = new JCheckBox("Sắp xếp"));
         p2.add(btMax = new JButton("Lấy max"));
+        p2.add(btMin = new JButton("Lấy min"));
 
         //add các thành phần vào cửa sổ
         add(p1, BorderLayout.NORTH);
@@ -108,8 +109,23 @@ public class FrmQLKhachHang extends JFrame {
         });
 
         btMax.addActionListener((e) -> {
-            double max = qlkh.getTieuThuCaoNhat();
-            JOptionPane.showMessageDialog(this, "Mức tiêu thụ cao nhất là: " + max, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                double max = qlkh.getTieuThuCaoNhat();
+                JOptionPane.showMessageDialog(this, "Mức tiêu thụ cao nhất là: " + max, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Cần xuất danh dách trước!");
+            }
+
+        });
+
+        btMin.addActionListener((e) -> {
+            try {
+                double min = qlkh.getTieuThuThapNhat();
+                JOptionPane.showMessageDialog(this, "Mức tiêu thụ thấp nhất là: " + min, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Cần xuất danh sách trước!");
+            }
+
         });
 
     }
