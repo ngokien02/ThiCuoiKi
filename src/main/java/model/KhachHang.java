@@ -73,16 +73,15 @@ public class KhachHang {
     public double getTieuThu() {
         return chisomoi - chisocu;
     }
- 
+
     public double getDinhMuc() {
         return sonhankhau * 4;
     }
-    
-    public boolean vuotDinhMuc(){
-        if(getTieuThu()<= getDinhMuc()){
+
+    public boolean vuotDinhMuc() {
+        if (getTieuThu() <= getDinhMuc()) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -91,15 +90,14 @@ public class KhachHang {
         double giaBan;
         if (getTieuThu() <= getDinhMuc()) {
             giaBan = 6700 * getTieuThu();
-            return giaBan + (giaBan * 0.05) + (giaBan * 0.25) + ((giaBan * 0.25) * 0.08);
         } else {
-            double soDMVuot = (getTieuThu() / sonhankhau);
-            if (soDMVuot > 4 && soDMVuot <= 6) {
-                return 0;
-            }
-            else{
-                return 0;
+            double tb = (getTieuThu() / sonhankhau);
+            if (tb > 4 && tb <= 6) {
+                giaBan = 6700 * getDinhMuc() + 12900 * (getTieuThu() - getDinhMuc());
+            } else {
+                giaBan = 6700 * getDinhMuc() + 12900 * (sonhankhau * 2) + 14400 * (getTieuThu() - getDinhMuc() - (sonhankhau * 2));
             }
         }
+        return giaBan + (giaBan * 0.05) + (giaBan * 0.25) + ((giaBan * 0.25) * 0.08);
     }
 }
