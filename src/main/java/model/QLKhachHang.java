@@ -29,7 +29,6 @@ public class QLKhachHang {
         this.dsKhachHang = dsKhachHang;
     }
 
-   
     public void DocKhachHang(String filename) {
         //sinh viên viết code 
         ArrayList<String> data = FileHelper.readFileText(filename); //doc file
@@ -45,21 +44,20 @@ public class QLKhachHang {
             kh.setChisomoi(Double.parseDouble(arr[4]));
             dsKhachHang.add(kh);
         }
-      
+
     }
 
     public boolean GhiHoaDon(String filename) {
         //sinh viên viết code 
         ArrayList<String> data = new ArrayList<>();
         for (KhachHang kh : dsKhachHang) {
-            String info = kh.getMaso() + ";" + kh.getHoten() + ";" + kh.getSonhankhau()+ ";" 
-                    + kh.getChisocu() + ";" +kh.getChisomoi()+";"+kh.getTieuThu();
+            String info = kh.getMaso() + ";" + kh.getHoten() + ";" + kh.getSonhankhau() + ";"
+                    + kh.getChisocu() + ";" + kh.getChisomoi() + ";" + kh.getTieuThu();
             data.add(info);
         }
         return FileHelper.writeFileText(filename, data);
     }
 
-   
     public void sapXepTheoMucTieuThu() {
         //sinh viên viết code           
         Comparator<KhachHang> cmp = (kh2, kh1) -> {
@@ -67,21 +65,20 @@ public class QLKhachHang {
         };
         Collections.sort(dsKhachHang, cmp);
     }
-    
-    public double getTieuThuCaoNhat()
-    {
-      double max=0;
-      return max;
+
+    public double getTieuThuCaoNhat() {
+        double max = 0;
+        sapXepTheoMucTieuThu();
+        max = dsKhachHang.getFirst().getTieuThu();
+        return max;
     }
-    
-    public double getTieuThuThapNhat()
-    {
-       double min=0;
-       return min;       
+
+    public double getTieuThuThapNhat() {
+        double min = 0;
+        return min;
     }
-    
-    public double getTieuThuTrungBinh()
-    {
-       return 0;     
+
+    public double getTieuThuTrungBinh() {
+        return 0;
     }
 }

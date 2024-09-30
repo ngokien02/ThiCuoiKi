@@ -22,7 +22,7 @@ import model.KhachHang;
 public class FrmQLKhachHang extends JFrame {
 
     private JTable tblKhachHang;
-    private JButton btDocFile, btGhiFile;
+    private JButton btDocFile, btGhiFile, btMax;
 
     private DefaultTableModel model;
     private JTextField txtMax, txtMin, txtTB;
@@ -77,6 +77,7 @@ public class FrmQLKhachHang extends JFrame {
         p2.add(txtTB = new JTextField(10));
 
         p2.add(chkSapXep = new JCheckBox("Sắp xếp"));
+        p2.add(btMax = new JButton("Lấy max"));
 
         //add các thành phần vào cửa sổ
         add(p1, BorderLayout.NORTH);
@@ -104,6 +105,11 @@ public class FrmQLKhachHang extends JFrame {
                 qlkh.sapXepTheoMucTieuThu();
                 loadDataToJTable();
             }
+        });
+
+        btMax.addActionListener((e) -> {
+            double max = qlkh.getTieuThuCaoNhat();
+            JOptionPane.showMessageDialog(this, "Mức tiêu thụ cao nhất là: " + max, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
         });
 
     }
