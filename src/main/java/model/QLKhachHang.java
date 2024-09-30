@@ -52,11 +52,11 @@ public class QLKhachHang {
         //sinh viên viết code 
         ArrayList<String> data = new ArrayList<>();
         for (KhachHang kh : dsKhachHang) {
-            String info = kh.getMaso() + ";" + kh.getHoten() + ";" + kh.getSonhankhau()+ ";" + kh.getChisocu() + ";" +kh.getChisomoi();
+            String info = kh.getMaso() + ";" + kh.getHoten() + ";" + kh.getSonhankhau()+ ";" 
+                    + kh.getChisocu() + ";" +kh.getChisomoi()+";"+kh.getTieuThu();
             data.add(info);
         }
         return FileHelper.writeFileText(filename, data);
-        
     }
 
    

@@ -73,9 +73,18 @@ public class KhachHang {
     public double getTieuThu() {
         return chisomoi - chisocu;
     }
-
+ 
     public double getDinhMuc() {
         return sonhankhau * 4;
+    }
+    
+    public boolean vuotDinhMuc(){
+        if(getTieuThu()<= getDinhMuc()){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public double tinhTienTra() {
