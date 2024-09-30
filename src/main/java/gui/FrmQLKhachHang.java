@@ -22,7 +22,7 @@ import model.KhachHang;
 public class FrmQLKhachHang extends JFrame {
 
     private JTable tblKhachHang;
-    private JButton btDocFile, btGhiFile, btMax, btMin, btTB;
+    private JButton btDocFile, btGhiFile;
 
     private DefaultTableModel model;
     private JTextField txtMax, txtMin, txtTB;
@@ -77,9 +77,6 @@ public class FrmQLKhachHang extends JFrame {
         p2.add(txtTB = new JTextField(10));
 
         p2.add(chkSapXep = new JCheckBox("Sắp xếp"));
-        p2.add(btMax = new JButton("Lấy max"));
-        p2.add(btMin = new JButton("Lấy min"));
-        p2.add(btTB = new JButton("Lấy trung bình"));
 
         //add các thành phần vào cửa sổ
         add(p1, BorderLayout.NORTH);
@@ -92,6 +89,9 @@ public class FrmQLKhachHang extends JFrame {
         btDocFile.addActionListener((e) -> {
             qlkh.DocKhachHang(FILE_NHAP);
             loadDataToJTable();
+            txtMax.setText(String.valueOf(qlkh.getTieuThuCaoNhat()));
+            txtMin.setText(String.valueOf(qlkh.getTieuThuThapNhat()));
+            txtTB.setText(String.valueOf(qlkh.getTieuThuTrungBinh()));
         });
 
         btGhiFile.addActionListener((e) -> {
@@ -108,36 +108,7 @@ public class FrmQLKhachHang extends JFrame {
                 loadDataToJTable();
             }
         });
-
-        btMax.addActionListener((e) -> {
-            try {
-                double max = qlkh.getTieuThuCaoNhat();
-                JOptionPane.showMessageDialog(this, "Mức tiêu thụ cao nhất là: " + max, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Cần nhập thông tin trước!");
-            }
-
-        });
-
-        btMin.addActionListener((e) -> {
-            try {
-                double min = qlkh.getTieuThuThapNhat();
-                JOptionPane.showMessageDialog(this, "Mức tiêu thụ thấp nhất là: " + min, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Cần nhập thông tin trước!");
-            }
-
-        });
-
-        btTB.addActionListener((e) -> {
-            try {
-                double tb = qlkh.getTieuThuTrungBinh();
-                JOptionPane.showMessageDialog(this, "Mức tiêu thụ trung bình là: " + tb, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Cần nhập thông tin trước!");
-            }
-        });
-
+        
     }
 
     private void loadDataToJTable() {
