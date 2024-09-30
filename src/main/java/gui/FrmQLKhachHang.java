@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -87,9 +88,17 @@ public class FrmQLKhachHang extends JFrame {
     private void processEvent() {
         btDocFile.addActionListener((e) -> {
             qlkh.DocKhachHang(FILE_NHAP);
-            //hiển thị danh sách sinh viên lên JTable
             loadDataToJTable();
         });
+        
+        btGhiFile.addActionListener((e) -> {
+            if (qlkh.GhiHoaDon(FILE_XUAT)) {
+                JOptionPane.showMessageDialog(this, "Đã ghi dữ liệu thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Đã ghi dữ liệu thất bại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
     }
     
     private void loadDataToJTable() {

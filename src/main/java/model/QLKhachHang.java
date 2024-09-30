@@ -50,7 +50,12 @@ public class QLKhachHang {
 
     public boolean GhiHoaDon(String filename) {
         //sinh viên viết code 
-        return true;
+        ArrayList<String> data = new ArrayList<>();
+        for (KhachHang kh : dsKhachHang) {
+            String info = kh.getMaso() + ";" + kh.getHoten() + ";" + kh.getSonhankhau()+ ";" + kh.getChisocu() + ";" +kh.getChisomoi();
+            data.add(info);
+        }
+        return FileHelper.writeFileText(filename, data);
         
     }
 
