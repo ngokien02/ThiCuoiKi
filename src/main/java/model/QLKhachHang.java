@@ -84,6 +84,11 @@ public class QLKhachHang {
     }
 
     public double getTieuThuTrungBinh() {
-        return 0;
+        double tb, tongTT = 0;
+        for (int i = 0; i < dsKhachHang.size(); i++) {
+            tongTT += dsKhachHang.get(i).getTieuThu();
+        }
+        tb = tongTT / dsKhachHang.size();
+        return tb;
     }
 }

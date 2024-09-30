@@ -22,7 +22,7 @@ import model.KhachHang;
 public class FrmQLKhachHang extends JFrame {
 
     private JTable tblKhachHang;
-    private JButton btDocFile, btGhiFile, btMax, btMin;
+    private JButton btDocFile, btGhiFile, btMax, btMin, btTB;
 
     private DefaultTableModel model;
     private JTextField txtMax, txtMin, txtTB;
@@ -79,6 +79,7 @@ public class FrmQLKhachHang extends JFrame {
         p2.add(chkSapXep = new JCheckBox("Sắp xếp"));
         p2.add(btMax = new JButton("Lấy max"));
         p2.add(btMin = new JButton("Lấy min"));
+        p2.add(btTB = new JButton("Lấy trung bình"));
 
         //add các thành phần vào cửa sổ
         add(p1, BorderLayout.NORTH);
@@ -113,7 +114,7 @@ public class FrmQLKhachHang extends JFrame {
                 double max = qlkh.getTieuThuCaoNhat();
                 JOptionPane.showMessageDialog(this, "Mức tiêu thụ cao nhất là: " + max, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Cần xuất danh dách trước!");
+                JOptionPane.showMessageDialog(this, "Cần nhập thông tin trước!");
             }
 
         });
@@ -123,9 +124,18 @@ public class FrmQLKhachHang extends JFrame {
                 double min = qlkh.getTieuThuThapNhat();
                 JOptionPane.showMessageDialog(this, "Mức tiêu thụ thấp nhất là: " + min, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Cần xuất danh sách trước!");
+                JOptionPane.showMessageDialog(this, "Cần nhập thông tin trước!");
             }
 
+        });
+
+        btTB.addActionListener((e) -> {
+            try {
+                double tb = qlkh.getTieuThuTrungBinh();
+                JOptionPane.showMessageDialog(this, "Mức tiêu thụ trung bình là: " + tb, "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Cần nhập thông tin trước!");
+            }
         });
 
     }
